@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Radio Button Example</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        button {
+            padding: 8px 15px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h2>Select a Color</h2>
+
+    <input type="radio" name="color" value="Red"> Red
+    <input type="radio" name="color" value="Green"> Green
+    <input type="radio" name="color" value="Blue"> Blue
+
+    <br><br>
+
+    <button onclick="showSelected()">Show Selected</button>
+
+    <p id="output"></p>
+
+    <script>
+        function showSelected() {
+            var colors = document.getElementsByName("color");
+            var selected = "";
+
+            for (var i = 0; i < colors.length; i++) {
+                if (colors[i].checked) {
+                    selected = colors[i].value;
+                    break;
+                }
+            }
+
+            document.getElementById("output").innerHTML = "Selected Color: " + selected;
+        }
+    </script>
+
+</body>
+</html>
