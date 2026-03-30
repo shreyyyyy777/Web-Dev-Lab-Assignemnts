@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Simple Calculator</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        input {
+            padding: 8px;
+            margin: 10px;
+            width: 120px;
+        }
+
+        button {
+            padding: 8px 12px;
+            margin: 5px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h2>Calculator</h2>
+
+    <input type="number" id="num1" step="any" placeholder="First Number">
+    <input type="number" id="num2" step="any" placeholder="Second Number"><br>
+
+    <button onclick="calculate('add')">+</button>
+    <button onclick="calculate('sub')">-</button>
+    <button onclick="calculate('mul')">*</button>
+    <button onclick="calculate('div')">/</button>
+
+    <h3 id="result"></h3>
+
+    <script>
+        function calculate(operation) {
+            var n1 = parseFloat(document.getElementById("num1").value);
+            var n2 = parseFloat(document.getElementById("num2").value);
+            var result;
+
+            switch(operation) {
+                case 'add':
+                    result = n1 + n2;
+                    break;
+                case 'sub':
+                    result = n1 - n2;
+                    break;
+                case 'mul':
+                    result = n1 * n2;
+                    break;
+                case 'div':
+                    if (n2 === 0) {
+                        result = "Cannot divide by zero";
+                    } else {
+                        result = n1 / n2;
+                    }
+                    break;
+                default:
+                    result = "Invalid operation";
+            }
+
+            document.getElementById("result").innerHTML = result;
+        }
+    </script>
+
+</body>
+</html>
