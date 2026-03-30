@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Font Customization Tool</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        fieldset {
+            width: 50%;
+            margin: auto;
+            padding: 20px;
+        }
+
+        input {
+            margin: 10px;
+        }
+
+        #text {
+            margin-top: 20px;
+            padding: 15px;
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h2>Dynamic Font Customization Tool</h2>
+
+    <fieldset>
+        <legend>Customize Text</legend>
+
+        <label>Font Size:</label><br>
+        <input type="range" min="10" max="50" value="20" oninput="changeStyle()"><br>
+
+        <label>Text Color:</label><br>
+        <input type="color" onchange="changeStyle()"><br>
+
+        <label>Background Color:</label><br>
+        <input type="color" onchange="changeStyle()">
+    </fieldset>
+
+    <p id="text">Customize this text using the controls above.</p>
+
+    <script>
+        function changeStyle() {
+            var size = document.querySelectorAll("input")[0].value;
+            var textColor = document.querySelectorAll("input")[1].value;
+            var bgColor = document.querySelectorAll("input")[2].value;
+
+            var text = document.getElementById("text");
+
+            text.style.fontSize = size + "px";
+            text.style.color = textColor;
+            text.style.backgroundColor = bgColor;
+        }
+    </script>
+
+</body>
+</html>
