@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Product Order Form</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        fieldset {
+            margin: 20px auto;
+            padding: 15px;
+            width: 50%;
+            text-align: left;
+        }
+
+        button {
+            padding: 8px 15px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h2>Product Order Form</h2>
+
+    <form id="orderForm">
+
+        <fieldset>
+            <legend>Electronics</legend>
+            <input type="checkbox" value="500"> Headphones (₹500)<br>
+            <input type="checkbox" value="1500"> Keyboard (₹1500)<br>
+        </fieldset>
+
+        <fieldset>
+            <legend>Clothing</legend>
+            <input type="checkbox" value="800"> T-Shirt (₹800)<br>
+            <input type="checkbox" value="1200"> Jeans (₹1200)<br>
+        </fieldset>
+
+        <fieldset>
+            <legend>Accessories</legend>
+            <input type="checkbox" value="300"> Belt (₹300)<br>
+            <input type="checkbox" value="200"> Cap (₹200)<br>
+        </fieldset>
+
+        <button type="button" onclick="calculateTotal()">Calculate Total</button>
+
+    </form>
+
+    <h3 id="result"></h3>
+
+    <script>
+        function calculateTotal() {
+            var items = document.querySelectorAll("input[type='checkbox']");
+            var total = 0;
+
+            for (var item of items) {
+                if (item.checked) {
+                    total += parseFloat(item.value);
+                }
+            }
+
+            document.getElementById("result").innerHTML = "Total Price: ₹" + total;
+        }
+    </script>
+
+</body>
+</html>
