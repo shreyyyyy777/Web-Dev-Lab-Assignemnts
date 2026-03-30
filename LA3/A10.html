@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Checkbox Selection</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        button {
+            padding: 8px 15px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h2>Select Subjects</h2>
+
+    <input type="checkbox" name="subject" value="Math"> Math
+    <input type="checkbox" name="subject" value="Science"> Science
+    <input type="checkbox" name="subject" value="English"> English
+    <input type="checkbox" name="subject" value="Computer"> Computer
+
+    <br><br>
+
+    <button onclick="countSelected()">Show Selection</button>
+
+    <p id="output"></p>
+
+    <script>
+        function countSelected() {
+            var subjects = document.getElementsByName("subject");
+            var selectedList = [];
+            var count = 0;
+
+            for (var i = 0; i < subjects.length; i++) {
+                if (subjects[i].checked) {
+                    selectedList.push(subjects[i].value);
+                    count++;
+                }
+            }
+
+            document.getElementById("output").innerHTML =
+                "Selected Count: " + count + "<br>" +
+                "Subjects: " + selectedList.join(", ");
+        }
+    </script>
+
+</body>
+</html>
