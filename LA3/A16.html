@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Overlapping Image Gallery</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .gallery {
+            position: relative;
+            width: 500px;
+            height: 300px;
+            margin: auto;
+        }
+
+        .gallery img {
+            position: absolute;
+            width: 200px;
+            height: 150px;
+            cursor: pointer;
+            border: 2px solid black;
+        }
+
+        #img1 { top: 20px; left: 20px; }
+        #img2 { top: 60px; left: 100px; }
+        #img3 { top: 100px; left: 180px; }
+    </style>
+</head>
+
+<body>
+
+    <h2>Overlapping Image Gallery</h2>
+
+    <div class="gallery">
+        <img id="img1" src="pikachu.jpeg" onclick="bringToFront(this)">
+        <img id="img2" src="lopunny.jpeg" onclick="bringToFront(this)">
+        <img id="img3" src="geodude.jpeg" onclick="bringToFront(this)">
+    </div>
+
+    <script>
+        var topZ = 1;
+
+        function bringToFront(element) {
+            element.style.zIndex = ++topZ;
+        }
+    </script>
+
+</body>
+</html>
