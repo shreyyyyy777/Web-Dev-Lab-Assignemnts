@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Simple Interest Calculator</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        input {
+            padding: 8px;
+            margin: 10px;
+        }
+
+        button {
+            padding: 8px 15px;
+        }
+    </style>
+
+    <script src="A11b.js"></script>
+</head>
+
+<body>
+
+    <h2>Simple Interest Calculator</h2>
+
+    <input type="number" id="principal" placeholder="Principal">
+    <input type="number" id="rate" placeholder="Rate">
+    <input type="number" id="time" placeholder="Time"><br>
+
+    <button onclick="calculateSI()">Calculate</button>
+
+    <p id="result"></p>
+
+</body>
+</html>
