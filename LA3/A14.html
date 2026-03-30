@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Text Styling App</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        fieldset {
+            width: 50%;
+            margin: auto;
+            padding: 20px;
+        }
+
+        .bold {
+            font-weight: bold;
+        }
+
+        .italic {
+            font-style: italic;
+        }
+
+        .smallcaps {
+            font-variant: small-caps;
+        }
+
+        button {
+            padding: 8px 15px;
+            margin: 5px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h2>Text Styling Application</h2>
+
+    <fieldset>
+        <legend>Controls</legend>
+
+        <button onclick="applyStyle('bold')">Bold</button>
+        <button onclick="applyStyle('italic')">Italic</button>
+        <button onclick="applyStyle('smallcaps')">Small Caps</button>
+        <button onclick="applyMultiple()">Apply All</button>
+        <button onclick="clearStyle()">Clear</button>
+    </fieldset>
+
+    <p id="text">This is a sample text for styling.</p>
+
+    <script>
+        function applyStyle(style) {
+            document.getElementById("text").className = style;
+        }
+
+        function applyMultiple() {
+            document.getElementById("text").className = "bold italic smallcaps";
+        }
+
+        function clearStyle() {
+            document.getElementById("text").className = "";
+        }
+    </script>
+
+</body>
+</html>
