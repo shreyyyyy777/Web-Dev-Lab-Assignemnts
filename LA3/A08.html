@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Multiplication Table</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        input {
+            padding: 8px;
+            margin: 10px;
+        }
+
+        button {
+            padding: 8px 15px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h2>Multiplication Table (Do-While)</h2>
+
+    <input type="number" id="num" placeholder="Enter Number">
+    <button onclick="generateTable()">Generate</button>
+
+    <p id="output"></p>
+
+    <script>
+        function generateTable() {
+            var n = parseInt(document.getElementById("num").value);
+            var i = 1;
+            var result = "";
+
+            do {
+                result += n + " x " + i + " = " + (n * i) + "<br>";
+                i++;
+            } while (i <= 10);
+
+            document.getElementById("output").innerHTML = result;
+        }
+    </script>
+
+</body>
+</html>
