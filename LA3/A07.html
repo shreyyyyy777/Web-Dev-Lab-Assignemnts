@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>While Loop Example</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        input {
+            padding: 8px;
+            margin: 10px;
+        }
+
+        button {
+            padding: 8px 15px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h2>Print Numbers from 1 to N</h2>
+
+    <input type="number" id="num" placeholder="Enter N">
+    <button onclick="printNumbers()">Print</button>
+
+    <p id="output"></p>
+
+    <script>
+        function printNumbers() {
+            var n = parseInt(document.getElementById("num").value);
+            var i = 1;
+            var result = "";
+
+            while (i <= n) {
+                result += i + " ";
+                i++;
+            }
+
+            document.getElementById("output").innerHTML = result;
+        }
+    </script>
+
+</body>
+</html>
