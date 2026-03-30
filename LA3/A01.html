@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hello World</title>
+</head>
+
+<body>
+
+    <h2 id="text">Click the button</h2>
+
+    <button onclick="showMessage()">Click Me</button>
+
+    <script>
+        function showMessage() {
+            var element = document.getElementById("text");
+            element.outerHTML = "<h2>Hello, world!</h2>";
+        }
+    </script>
+
+</body>
+</html>
