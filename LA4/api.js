@@ -1,17 +1,16 @@
-export const fetchBooks = async (query) => {
-  const res = await fetch(`https://www.googleapis.com/books/v1/volumes?q=${query}`);
+export const fetchCountries = async (query) => {
+  const res = await fetch(`https://restcountries.com/v3.1/name/${query}`);
   const data = await res.json();
 
-  return (data.items || []).map(book => {
-    const info = book.volumeInfo || {};
+  if (!res.ok) {
+    throw new Error("Failed to fetch countries");
+  }
 
-    return {
-      id: book.id,
-      title: info.title || "No Title",
-      author: info.authors?.[0] || "Unknown",
-      publisher: info.publisher || "N/A",
-      year: info.publishedDate || "N/A",
-      image: info.imageLinks?.thumbnail || ""
-    };
-  });
+  return data.map(country => ({
+    name: country.name.common,
+    capital: country.capital?.[0] || "N/A",
+    population: country.population,
+    region: country.region,
+    flag: country.flags?.png
+  }));
 };

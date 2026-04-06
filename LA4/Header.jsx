@@ -1,5 +1,5 @@
 const Header = () => {
-  return <h1 style={{ textAlign: 'center' }}>📚 Book Explorer</h1>;
+  return <h1 style={{ textAlign: 'center' }}>🌍 Country Explorer</h1>;
 };
 
 export default Header;
