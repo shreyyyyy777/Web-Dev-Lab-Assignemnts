@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>React Calculator</title>
+
+  <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <style>
+    body {
+      background-color: #1e1e1e;
+      font-family: Arial, sans-serif;
+    }
+
+    .container {
+      width: 300px;
+      margin: 100px auto;
+      padding: 20px;
+      background: #2c2c2c;
+      border-radius: 10px;
+      text-align: center;
+      color: white;
+    }
+
+    input {
+      width: 90%;
+      padding: 10px;
+      margin: 10px 0;
+      border: none;
+      border-radius: 5px;
+    }
+
+    button {
+      padding: 10px 15px;
+      margin: 5px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      background-color: teal;
+      color: white;
+    }
+
+    button:hover {
+      background-color: #008080cc;
+    }
+
+    h2 {
+      margin-top: 15px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="root"></div>
+
+  <script type="text/babel">
+
+    const Calculator = () => {
+      const [num1, setNum1] = React.useState("");
+      const [num2, setNum2] = React.useState("");
+      const [result, setResult] = React.useState(0);
+
+      const add = () => {
+        setResult(Number(num1) + Number(num2));
+      };
+
+      const subtract = () => {
+        setResult(Number(num1) - Number(num2));
+      };
+
+      return (
+        <div className="container">
+          <h1>Calculator</h1>
+
+          <input
+            type="number"
+            value={num1}
+            onChange={(e) => setNum1(e.target.value)}
+            placeholder="Enter first number"
+          />
+
+          <input
+            type="number"
+            value={num2}
+            onChange={(e) => setNum2(e.target.value)}
+            placeholder="Enter second number"
+          />
+
+          <div>
+            <button onClick={add}>Add</button>
+            <button onClick={subtract}>Subtract</button>
+          </div>
+
+          <h2>Result: {result}</h2>
+        </div>
+      );
+    };
+
+    const root = ReactDOM.createRoot(document.getElementById("root"));
+    root.render(<Calculator />);
+
+  </script>
+</body>
+</html>
