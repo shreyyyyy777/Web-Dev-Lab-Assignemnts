@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>React Todo App</title>
+
+  <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <style>
+    body {
+      background-color: #181818;
+      font-family: Arial, sans-serif;
+      color: white;
+    }
+
+    .container {
+      width: 350px;
+      margin: 100px auto;
+      padding: 20px;
+      background: #2a2a2a;
+      border-radius: 10px;
+      text-align: center;
+    }
+
+    input {
+      width: 70%;
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      margin-right: 5px;
+    }
+
+    button {
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      background-color: teal;
+      color: white;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #008080cc;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin-top: 20px;
+    }
+
+    li {
+      background: #3a3a3a;
+      margin: 5px 0;
+      padding: 10px;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="root"></div>
+
+  <script type="text/babel">
+
+    const TodoApp = () => {
+      const [task, setTask] = React.useState("");
+      const [tasks, setTasks] = React.useState([]);
+
+      const addTask = () => {
+        if (task.trim() === "") return;
+        setTasks([...tasks, task]);
+        setTask("");
+      };
+
+      return (
+        <div className="container">
+          <h1>Todo List</h1>
+
+          <input
+            type="text"
+            value={task}
+            onChange={(e) => setTask(e.target.value)}
+            placeholder="Enter task"
+          />
+
+          <button onClick={addTask}>Add</button>
+
+          <ul>
+            {tasks.map((t, index) => (
+              <li key={index}>{t}</li>
+            ))}
+          </ul>
+        </div>
+      );
+    };
+
+    const root = ReactDOM.createRoot(document.getElementById("root"));
+    root.render(<TodoApp />);
+
+  </script>
+</body>
+</html>
