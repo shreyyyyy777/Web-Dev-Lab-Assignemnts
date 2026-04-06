@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Weather Dashboard</title>
+
+  <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #0f172a;
+      color: white;
+    }
+
+    .app {
+      text-align: center;
+      padding: 40px;
+    }
+
+    .header {
+      font-size: 36px;
+      margin-bottom: 30px;
+    }
+
+    .search-box input {
+      padding: 12px;
+      width: 250px;
+      border: none;
+      border-radius: 8px;
+      margin-right: 10px;
+    }
+
+    .search-box button {
+      padding: 12px 18px;
+      border: none;
+      border-radius: 8px;
+      background-color: teal;
+      color: white;
+      cursor: pointer;
+    }
+
+    .dashboard {
+      margin-top: 30px;
+      padding: 20px;
+      background: #1e293b;
+      border-radius: 12px;
+      display: inline-block;
+      min-width: 280px;
+    }
+
+    .item {
+      margin: 8px 0;
+    }
+
+    .error {
+      margin-top: 20px;
+      color: #ff6b6b;
+    }
+
+    .loading {
+      margin-top: 20px;
+      color: #facc15;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="root"></div>
+
+  <script type="text/babel">
+
+    const API_KEY = "fefef321598961ec9c043d7bed0f2c7a";
+
+    const fetchWeather = async (city) => {
+      const res = await fetch(
+        `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=metric`
+      );
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        throw new Error(data.message || "Error fetching weather");
+      }
+
+      return {
+        name: data.name,
+        temp: data.main.temp,
+        desc: data.weather[0].description,
+        humidity: data.main.humidity,
+        wind: data.wind.speed
+      };
+    };
+
+    const Header = () => {
+      return <div className="header">Weather Dashboard</div>;
+    };
+
+    const Search = ({ onSearch }) => {
+      const [city, setCity] = React.useState("");
+
+      return (
+        <div className="search-box">
+          <input
+            type="text"
+            value={city}
+            onChange={(e) => setCity(e.target.value)}
+            placeholder="Enter city"
+          />
+          <button onClick={() => onSearch(city)}>Search</button>
+        </div>
+      );
+    };
+
+    const Dashboard = ({ weather }) => {
+      return (
+        <div className="dashboard">
+          <h2>{weather.name}</h2>
+          <div className="item">Temperature: {weather.temp} °C</div>
+          <div className="item">Condition: {weather.desc}</div>
+          <div className="item">Humidity: {weather.humidity}%</div>
+          <div className="item">Wind Speed: {weather.wind} m/s</div>
+        </div>
+      );
+    };
+
+    const App = () => {
+      const [weather, setWeather] = React.useState(null);
+      const [error, setError] = React.useState("");
+      const [loading, setLoading] = React.useState(false);
+
+      const handleSearch = async (city) => {
+        if (!city.trim()) {
+          setError("Enter a city name");
+          return;
+        }
+
+        setLoading(true);
+        setError("");
+        setWeather(null);
+
+        try {
+          const data = await fetchWeather(city);
+          setWeather(data);
+        } catch (err) {
+          setError(err.message);
+        }
+
+        setLoading(false);
+      };
+
+      return (
+        <div className="app">
+          <Header />
+          <Search onSearch={handleSearch} />
+
+          {loading && <div className="loading">Loading...</div>}
+          {error && <div className="error">{error}</div>}
+          {weather && <Dashboard weather={weather} />}
+        </div>
+      );
+    };
+
+    const root = ReactDOM.createRoot(document.getElementById("root"));
+    root.render(<App />);
+
+  </script>
+</body>
+</html>
